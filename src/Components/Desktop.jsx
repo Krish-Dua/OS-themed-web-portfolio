@@ -1,6 +1,7 @@
 import React from 'react'
 import Taskbar from './taskbar'
 import useWindowStore from '../Store'
+import { Rnd } from "react-rnd";
 const DESKTOP_ICONS = [
   {
     id: "projects",
@@ -33,10 +34,10 @@ const DESKTOP_ICONS = [
     icon: "./terminal.png",
   },
   {
-    id: "classic",
+    id: "standardP",
     title: "Standard Portfolio",
     subtitle: "Click here for simple portfolio",
-    icon: "./simp-port.png",
+    icon: "./standardP.png",
   },
 ];
 
@@ -50,7 +51,11 @@ const activeWindowId = useWindowStore((s) => s.activeWindowId);
 const openWindow = useWindowStore((s) => s.openWindow);
 const closeWindow = useWindowStore((s) => s.closeWindow);
 const focusWindow = useWindowStore((s) => s.focusWindow);
-console.log(windows)
+const minimizeWindow = useWindowStore((s) => s.minimizeWindow);
+const toggleMaximize = useWindowStore((s) => s.toggleMaximize);
+const updatePosition = useWindowStore((s) => s.updatePosition);
+const updateSize = useWindowStore((s) => s.updateSize);
+
 
   return (
     <>
@@ -94,29 +99,52 @@ console.log(windows)
     const isActive = activeWindowId === win.id;
 
     return (
-      <div
-        key={win.id}
-        onMouseDown={() => focusWindow(win.id)}
-        className={`
-          absolute
-          rounded-md
-          shadow-2xl
-          overflow-hidden
-          bg-zinc-900
-          border
-          ${isActive ? "border-blue-500" : "border-zinc-700"}
-        `}
-        style={{
-          top: win.position.y,
-          left: win.position.x,
-          width: win.size.width,
-          height: win.size.height,
-          zIndex: win.zIndex,
-        }}
-      >
+      <Rnd
+  key={win.id}
+    dragHandleClassName="window-header"
+    cancel='.no-drag'
+  onMouseDown={() => focusWindow(win.id)}
+  bounds="parent"
+    disableDragging={win.isMaximized}
+  enableResizing={!win.isMaximized}
+  size={{
+    width: win.isMaximized ? "100%" : win.size.width,
+    height: win.isMaximized ? "100%" : win.size.height,
+  }}
+  position={{
+    x: win.isMaximized ? 0 : win.position.x,
+    y: win.isMaximized ? 0 : win.position.y,
+  }}
+  onDragStop={(e, d) => {
+    updatePosition(win.id, 
+       { x: d.x, y: d.y }
+    );
+  }}
+  onResizeStop={(e, direction, ref, delta, position) => {
+    updateSize(win.id, 
+       {
+        width: ref.offsetWidth,
+        height: ref.offsetHeight,
+      }
+  );
+  }}
+  className="
+    absolute
+    shadow-2xl
+    overflow-hidden
+    bg-zinc-900
+    border
+  "
+  style={{
+    zIndex: win.zIndex,
+  }}
+>
         {/* ================= TITLE BAR ================= */}
         <div
           className={`
+            window-header
+            cursor-grab
+            active:cursor-grabbing
             h-9 px-2
             flex items-center justify-between
             select-none
@@ -124,7 +152,7 @@ console.log(windows)
           `}
         >
           {/* Left: Title */}
-          <div className="flex items-center gap-2">
+          <div className="flex h-full cursor-default items-center no-drag gap-2">
             <div className="w-4 h-4 bg-white/20 rounded-sm" />
             <span className="text-sm text-white font-medium">
               {win.title}
@@ -132,9 +160,13 @@ console.log(windows)
           </div>
 
           {/* Right: Window Controls (UI only) */}
-          <div className="flex items-center">
+          <div className="flex no-drag items-center">
             {/* Minimize */}
             <button
+              onClick={(e) => {
+                e.stopPropagation();
+                minimizeWindow(win.id);
+              }}
               className="
                 w-8 h-8
                 flex items-center justify-center
@@ -147,6 +179,10 @@ console.log(windows)
 
             {/* Maximize */}
             <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMaximize(win.id);
+              }}
               className="
                 w-8 h-8
                 flex items-center justify-center
@@ -154,7 +190,7 @@ console.log(windows)
                 text-white
               "
             >
-              ⬜
+              {win.isMaximized ? "🗗" : "🗖"}
             </button>
 
             {/* Close */}
@@ -180,7 +216,7 @@ console.log(windows)
           {/* content will come LAST */}
           {win.title} window
         </div>
-      </div>
+      </Rnd>
     );
   })}
 

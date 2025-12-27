@@ -18,7 +18,7 @@ const useWindowStore = create((set, get) => ({
           activeWindowId: id,
         };
       }
-      const offset = state.windows.length * 100;
+      const offset = state.windows.length * 40;
 
       const newWindow = {
         id,
@@ -86,12 +86,14 @@ const useWindowStore = create((set, get) => ({
   },
 
   updatePosition: (id, position) => {
+    console.log(position);
     set((state) => ({
       windows: state.windows.map((w) => (w.id === id ? { ...w, position } : w)),
     }));
   },
 
   updateSize: (id, size) => {
+    console.log(size)
     set((state) => ({
       windows: state.windows.map((w) => (w.id === id ? { ...w, size } : w)),
     }));
