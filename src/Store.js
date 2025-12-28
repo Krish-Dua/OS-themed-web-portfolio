@@ -5,40 +5,52 @@ let zCounter = 1;
 const useWindowStore = create((set, get) => ({
   windows: [],
   activeWindowId: null,
+openWindow: (id, title, desktopSize) => {
+  set((state) => {
+    const existing = state.windows.find((w) => w.id === id);
 
-  openWindow: (id, title) => {
-    set((state) => {
-      const existing = state.windows.find((w) => w.id === id);
-
-      if (existing) {
-        return {
-          windows: state.windows.map((w) =>
-            w.id === id ? { ...w, isMinimized: false, zIndex: ++zCounter } : w
-          ),
-          activeWindowId: id,
-        };
-      }
-      const offset = state.windows.length * 40;
-
-      const newWindow = {
-        id,
-        title,
-        isMinimized: false,
-        isMaximized: false,
-        zIndex: ++zCounter,
-        position: {
-          x: 120 + offset,
-          y: 80 + offset,
-        },
-        size: { width: 600, height: 400 },
-      };
-
+    
+    if (existing) {
       return {
-        windows: [...state.windows, newWindow],
+        windows: state.windows.map((w) =>
+          w.id === id
+            ? {
+                ...w,
+                isMinimized: false,
+                zIndex: ++zCounter,
+              }
+            : w
+        ),
         activeWindowId: id,
       };
-    });
-  },
+    }
+
+   
+    
+    const width = Math.floor(desktopSize.width * 0.7);
+    const height = Math.floor(desktopSize.height * 0.7);
+
+   
+    const x = Math.floor((desktopSize.width - width) / 2);
+    const y = Math.floor((desktopSize.height - height) / 2);
+const offset = state.windows.length * 40;
+    const newWindow = {
+      id,
+      title,
+      isMinimized: false,
+      isMaximized: false,
+      zIndex: ++zCounter,
+      position: { x:x+offset, y:y+offset },
+      size: { width, height },
+    };
+
+    return {
+      windows: [...state.windows, newWindow],
+      activeWindowId: id,
+    };
+  });
+},
+
 
   closeWindow: (id) => {
     set((state) => ({
