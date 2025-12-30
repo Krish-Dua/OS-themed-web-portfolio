@@ -2,11 +2,12 @@ import React from "react";
 import Taskbar from "./taskbar";
 import useWindowStore from "../Store";
 import { Rnd } from "react-rnd";
+import StartMenu from "./StartMenu";
 const DESKTOP_ICONS = [
   {
     id: "projects",
     title: "Projects",
-    subtitle:"Double Click to see my projects",
+    subtitle: "Double Click to view my projects",
     icon: "./projects.png",
     type: "window",
   },
@@ -15,18 +16,19 @@ const DESKTOP_ICONS = [
     title: "About Me",
     icon: "./about.png",
     type: "window",
-    subtitle:"Double Click toKnow more about me"
+    subtitle: "Double Click to Know more about me",
   },
   {
     id: "skills",
     title: "Skills & Education",
     icon: "./skills.png",
     type: "window",
-    subtitle:"Double Click to see my Skills & Education"
+    subtitle: "Double Click to see my Skills & Education",
   },
   {
     id: "resume",
     title: "Resume",
+    subtitle: "Double Click to view My Resume (PDF Format)",
     icon: "./resume.png",
     type: "pdf",
     url: "./Krish_Dua_Resume.pdf",
@@ -36,41 +38,40 @@ const DESKTOP_ICONS = [
     title: "Contact",
     icon: "./contact.png",
     type: "window",
-    subtitle:"Double Click to Contact Me"
-    
+    subtitle: "Double Click to get in touch",
   },
   {
     id: "terminal",
     title: "Terminal",
     icon: "./terminal.png",
     type: "window",
-    subtitle:"Double Click to Open Terminal"
+    subtitle: "Double Click to Open Terminal",
   },
   {
     id: "standardP",
     title: "Standard Portfolio",
-    subtitle: "Click here for simple portfolio",
+    subtitle: "Click here for a simple portfolio",
     icon: "./standardP.png",
     type: "external",
-    url:"https://www.google.com"
+    url: "https://www.google.com",
   },
 ];
 const SNAP_THRESHOLD = 20;
 
-const Desktop = () => {
+const Desktop = ({onLogout}) => {
   const desktopRef = React.useRef(null);
   const lastDragY = React.useRef(null);
-const draggingWindowId = React.useRef(null);
+  const draggingWindowId = React.useRef(null);
 
   const desktopSize = {
     width: desktopRef.current?.offsetWidth ?? 0,
     height: desktopRef.current?.offsetHeight ?? 0,
   };
+
   const [snapPreview, setSnapPreview] = React.useState(null);
 
   const windows = useWindowStore((s) => s.windows);
   const activeWindowId = useWindowStore((s) => s.activeWindowId);
-
   const openWindow = useWindowStore((s) => s.openWindow);
   const closeWindow = useWindowStore((s) => s.closeWindow);
   const focusWindow = useWindowStore((s) => s.focusWindow);
@@ -78,28 +79,33 @@ const draggingWindowId = React.useRef(null);
   const toggleMaximize = useWindowStore((s) => s.toggleMaximize);
   const updatePosition = useWindowStore((s) => s.updatePosition);
   const updateSize = useWindowStore((s) => s.updateSize);
-const minWindowSize = {
-  width: Math.floor(desktopSize.width * 0.6),
-  height: Math.floor(desktopSize.height * 0.7),
-};
+  const closeStart = useWindowStore((s) => s.closeStart);
+  
 
-const handleIconClick = (icon) => {
-  if (icon.type === "window") {
-    openWindow(icon.id, icon.title, desktopSize);
-  }
+  const minWindowSize = {
+    width: Math.floor(desktopSize.width * 0.6),
+    height: Math.floor(desktopSize.height * 0.7),
+  };
 
-  if (icon.type === "pdf") {
-    window.open(icon.url, "_blank");
-  }
+  const handleIconClick = (icon) => {
+    if (icon.type === "window") {
+      openWindow(icon.id, icon.title, desktopSize);
+    }
 
-  if (icon.type === "external") {
-    window.open(icon.url, "_blank", "noopener,noreferrer");
-  }
-};
+    if (icon.type === "pdf") {
+      window.open(icon.url, "_blank");
+    }
+
+    if (icon.type === "external") {
+      window.open(icon.url, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <>
       <div
         ref={desktopRef}
+          onMouseDown={() => closeStart()}
         className='w-screen relative overflow-hidden h-[93dvh] bg-[url("./Desktop-bg.jpg")] bg-cover bg-center'
       >
         <div className="h-[90%] select-none w-min flex flex-wrap gap-6 flex-col">
@@ -133,130 +139,109 @@ const handleIconClick = (icon) => {
             </button>
           ))}
         </div>
+
         {windows
           .filter((w) => !w.isMinimized)
           .map((win) => {
-
             const isActive = activeWindowId === win.id;
 
             return (
- <Rnd
-  key={win.id}
-  dragHandleClassName="window-header"
-  cancel=".no-drag"
-  bounds="parent"
-    minWidth={minWindowSize.width}
-  minHeight={minWindowSize.height}
-  size={{
-    width: win.isMaximized ? desktopSize.width : win.size.width,
-    height: win.isMaximized ? desktopSize.height : win.size.height,
-  }}
+              <Rnd
+                key={win.id}
+                dragHandleClassName="window-header"
+                cancel=".no-drag"
+                bounds="parent"
+                minWidth={minWindowSize.width}
+                minHeight={minWindowSize.height}
+                size={{
+                  width: win.isMaximized ? desktopSize.width : win.size.width,
+                  height: win.isMaximized
+                    ? desktopSize.height
+                    : win.size.height,
+                }}
+                position={{
+                  x: win.isMaximized ? 0 : win.position.x,
+                  y: win.isMaximized ? 0 : win.position.y,
+                }}
+                disableDragging={win.isMaximized}
+                enableResizing={!win.isMaximized}
+                onDragStart={(e, d) => {
+                  lastDragY.current = d.y;
+                  draggingWindowId.current = win.id;
+                  focusWindow(win.id);
+                }}
+                onDrag={(e, d) => {
+                  const isSideSnapped =
+                    win.size.height === desktopSize.height &&
+                    win.size.width === desktopSize.width / 2;
 
-  position={{
-    x: win.isMaximized ? 0 : win.position.x,
-    y: win.isMaximized ? 0 : win.position.y,
-  }}
+                  if (d.x < SNAP_THRESHOLD) {
+                    setSnapPreview("left");
+                  } else if (
+                    d.x + win.size.width >
+                    desktopSize.width - SNAP_THRESHOLD
+                  ) {
+                    setSnapPreview("right");
+                  } else if (!isSideSnapped && d.y < SNAP_THRESHOLD) {
+                    setSnapPreview("maximize");
+                  } else {
+                    setSnapPreview(null);
+                  }
+                }}
+                onDragStop={(e, d) => {
+                  setSnapPreview(null);
+                  draggingWindowId.current = null;
 
-  disableDragging={win.isMaximized}
-  enableResizing={!win.isMaximized}
+                  const desktopWidth = desktopSize.width;
+                  const desktopHeight = desktopSize.height;
 
- 
-  onDragStart={(e, d) => {
-    lastDragY.current = d.y;           
-    draggingWindowId.current = win.id; 
-    focusWindow(win.id);
-  }}
+                  const movingUp =
+                    lastDragY.current !== null && d.y < lastDragY.current - 10;
 
- 
- onDrag={(e, d) => {
-  const isSideSnapped =
-    win.size.height === desktopSize.height &&
-    win.size.width === desktopSize.width / 2;
+                  if (d.x < SNAP_THRESHOLD) {
+                    updatePosition(win.id, { x: 0, y: 0 });
+                    updateSize(win.id, {
+                      width: desktopWidth / 2,
+                      height: desktopHeight,
+                    });
+                    return;
+                  }
 
-  if (d.x < SNAP_THRESHOLD) {
-    setSnapPreview("left");
-  } 
-  else if (
-    d.x + win.size.width >
-    desktopSize.width - SNAP_THRESHOLD
-  ) {
-    setSnapPreview("right");
-  } 
-  else if (
-    !isSideSnapped &&  
-    d.y < SNAP_THRESHOLD
-  ) {
-    setSnapPreview("maximize");
-  } 
-  else {
-    setSnapPreview(null);
-  }
-}}
+                  if (d.x + win.size.width > desktopWidth - SNAP_THRESHOLD) {
+                    updatePosition(win.id, { x: desktopWidth / 2, y: 0 });
+                    updateSize(win.id, {
+                      width: desktopWidth / 2,
+                      height: desktopHeight,
+                    });
+                    return;
+                  }
 
- 
-  onDragStop={(e, d) => {
-    setSnapPreview(null);
-    draggingWindowId.current = null;
+                  if (movingUp && d.y < SNAP_THRESHOLD) {
+                    toggleMaximize(win.id);
+                    return;
+                  }
 
-    const desktopWidth = desktopSize.width;
-    const desktopHeight = desktopSize.height;
-
-    const movingUp =
-      lastDragY.current !== null &&
-      d.y < lastDragY.current - 10; 
-
-    
-    if (d.x < SNAP_THRESHOLD) {
-      updatePosition(win.id, { x: 0, y: 0 });
-      updateSize(win.id, {
-        width: desktopWidth / 2,
-        height: desktopHeight,
-      });
-      return;
-    }
-
-    
-    if (d.x + win.size.width > desktopWidth - SNAP_THRESHOLD) {
-      updatePosition(win.id, { x: desktopWidth / 2, y: 0 });
-      updateSize(win.id, {
-        width: desktopWidth / 2,
-        height: desktopHeight,
-      });
-      return;
-    }
-
-    
-    if (movingUp && d.y < SNAP_THRESHOLD) {
-      toggleMaximize(win.id);
-      return;
-    }
-
-    
-    updatePosition(win.id, { x: d.x, y: d.y });
-  }}
-
- 
-  onResizeStart={() => focusWindow(win.id)}
-  onResizeStop={(e, direction, ref, delta, position) => {
-    updateSize(win.id, {
-      width: ref.offsetWidth,
-      height: ref.offsetHeight,
-    });
-    updatePosition(win.id, position);
-  }}
-
-  className="
+                  updatePosition(win.id, { x: d.x, y: d.y });
+                }}
+                onResizeStart={() => focusWindow(win.id)}
+                onResizeStop={(e, direction, ref, delta, position) => {
+                  updateSize(win.id, {
+                    width: ref.offsetWidth,
+                    height: ref.offsetHeight,
+                  });
+                  updatePosition(win.id, position);
+                }}
+                className="
     absolute
     shadow-2xl
     overflow-hidden
     bg-zinc-900
     border
   "
-  style={{
-    zIndex: win.zIndex,
-  }}
->
-
+                style={{
+                  zIndex: win.zIndex,
+                }}
+              >
                 {/* ================= TITLE BAR ================= */}
                 <div
                   className={`
@@ -321,6 +306,9 @@ const handleIconClick = (icon) => {
               </Rnd>
             );
           })}
+
+<StartMenu logout={onLogout} desktopSize={desktopSize} />
+
         {snapPreview && (
           <div className="absolute inset-0 pointer-events-none">
             <div

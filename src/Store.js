@@ -5,6 +5,23 @@ let zCounter = 1;
 const useWindowStore = create((set, get) => ({
   windows: [],
   activeWindowId: null,
+  isStartOpen: false,
+
+toggleStart: () =>
+  set((state) => ({ isStartOpen: !state.isStartOpen })),
+
+closeStart: () =>
+  set({ isStartOpen: false }),
+
+clearStates:()=>{
+  set(()=>({
+     windows: [],
+  activeWindowId: null,
+  isStartOpen: false,
+
+  }))
+},
+
 openWindow: (id, title, desktopSize) => {
   set((state) => {
     const existing = state.windows.find((w) => w.id === id);

@@ -13,7 +13,7 @@ export default function Clock() {
   }, []);
 
   return (
-    <div className="text-center max-h-[7dvh] flex flex-col justify-center items-center text-white">
+    <div className="text-center max-h-[7dvh] flex flex-col justify-center px-2 items-center text-white">
       <div className="text-lg tracking-wide">
         {now.format("hh:mm A")}
       </div>

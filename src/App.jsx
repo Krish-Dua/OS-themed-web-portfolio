@@ -15,7 +15,7 @@ function App() {
     return <LoginScreen onLogin={() => setPhase("desktop")} />
   }
 
-  return <Desktop />
+  return <Desktop onLogout={() => setPhase("login")}/>
 }
 
 export default App
