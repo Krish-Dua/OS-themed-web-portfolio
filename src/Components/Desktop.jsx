@@ -6,38 +6,53 @@ const DESKTOP_ICONS = [
   {
     id: "projects",
     title: "Projects",
+    subtitle:"Double Click to see my projects",
     icon: "./projects.png",
+    type: "window",
   },
   {
     id: "about",
     title: "About Me",
     icon: "./about.png",
+    type: "window",
+    subtitle:"Double Click toKnow more about me"
   },
   {
     id: "skills",
-    title: "Skills",
+    title: "Skills & Education",
     icon: "./skills.png",
+    type: "window",
+    subtitle:"Double Click to see my Skills & Education"
   },
   {
     id: "resume",
     title: "Resume",
     icon: "./resume.png",
+    type: "pdf",
+    url: "./Krish_Dua_Resume.pdf",
   },
   {
     id: "contact",
     title: "Contact",
     icon: "./contact.png",
+    type: "window",
+    subtitle:"Double Click to Contact Me"
+    
   },
   {
     id: "terminal",
     title: "Terminal",
     icon: "./terminal.png",
+    type: "window",
+    subtitle:"Double Click to Open Terminal"
   },
   {
     id: "standardP",
     title: "Standard Portfolio",
     subtitle: "Click here for simple portfolio",
     icon: "./standardP.png",
+    type: "external",
+    url:"https://www.google.com"
   },
 ];
 const SNAP_THRESHOLD = 20;
@@ -67,6 +82,20 @@ const minWindowSize = {
   width: Math.floor(desktopSize.width * 0.6),
   height: Math.floor(desktopSize.height * 0.7),
 };
+
+const handleIconClick = (icon) => {
+  if (icon.type === "window") {
+    openWindow(icon.id, icon.title, desktopSize);
+  }
+
+  if (icon.type === "pdf") {
+    window.open(icon.url, "_blank");
+  }
+
+  if (icon.type === "external") {
+    window.open(icon.url, "_blank", "noopener,noreferrer");
+  }
+};
   return (
     <>
       <div
@@ -77,7 +106,8 @@ const minWindowSize = {
           {DESKTOP_ICONS.map((icon) => (
             <button
               key={icon.id}
-              onDoubleClick={() => openWindow(icon.id, icon.title,desktopSize)}
+              title={icon.subtitle}
+              onDoubleClick={() => handleIconClick(icon)}
               className="
               w-24
               flex flex-col items-center gap-1

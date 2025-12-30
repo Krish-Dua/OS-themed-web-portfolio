@@ -24,15 +24,18 @@ openWindow: (id, title, desktopSize) => {
         activeWindowId: id,
       };
     }
+const desktopWidth = desktopSize.width || window.innerWidth;
+const desktopHeight = desktopSize.height || window.innerHeight;
+
+const width = Math.floor(desktopWidth * 0.7);
+const height = Math.floor(desktopHeight * 0.7);
+
+const x = Math.floor((desktopWidth - width) / 2);
+const y = Math.floor((desktopHeight - height) / 2);
 
    
     
-    const width = Math.floor(desktopSize.width * 0.7);
-    const height = Math.floor(desktopSize.height * 0.7);
 
-   
-    const x = Math.floor((desktopSize.width - width) / 2);
-    const y = Math.floor((desktopSize.height - height) / 2);
 const offset = state.windows.length * 40;
     const newWindow = {
       id,

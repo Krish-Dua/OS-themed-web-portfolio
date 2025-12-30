@@ -56,7 +56,7 @@ const restoreWindow = useWindowStore((s) => s.restoreWindow);
   return(
     <img onClick={()=>{
       restoreWindow(win.id)
-    }} src={`./${win.id}.png`} className={`h-[90%] w-auto object-contain hover:scale-105 ${activeWindowId===win.id?"border-b-4 border-blue-300":" border-b-4 border-gray-400"} `} alt="" />
+    }} src={`./${win.id}.png`} className={`h-[90%] w-auto  object-contain hover:scale-105 ${activeWindowId===win.id?"border-b-4 border-blue-300":" border-b-4 border-gray-400"} `} alt="" />
   )
 })}
 </div>
