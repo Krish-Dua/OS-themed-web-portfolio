@@ -2,44 +2,7 @@ import React from 'react'
 import Clock from './Clock'
 import useWindowStore from '../Store'
 
-const DESKTOP_ICONS = [
-  {
-    id: "projects",
-    title: "Projects",
-    icon: "./projects.png",
-  },
-  {
-    id: "about",
-    title: "About Me",
-    icon: "./about.png",
-  },
-  {
-    id: "skills",
-    title: "Skills",
-    icon: "./skills.png",
-  },
-  {
-    id: "resume",
-    title: "Resume",
-    icon: "./resume.png",
-  },
-  {
-    id: "contact",
-    title: "Contact",
-    icon: "./contact.png",
-  },
-  {
-    id: "terminal",
-    title: "Terminal",
-    icon: "./terminal.png",
-  },
-  {
-    id: "standardP",
-    title: "Standard Portfolio",
-    subtitle: "Click here for simple portfolio",
-    icon: "./standardP.png",
-  },
-];
+
 
 const Taskbar = () => {
   const windows = useWindowStore((s) => s.windows);

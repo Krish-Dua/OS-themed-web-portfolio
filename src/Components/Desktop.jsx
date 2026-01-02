@@ -3,6 +3,11 @@ import Taskbar from "./taskbar";
 import useWindowStore from "../Store";
 import { Rnd } from "react-rnd";
 import StartMenu from "./StartMenu";
+import AboutWindow from "./AboutMeContent";
+import ContactWindow from "./ContactContent";
+import ProjectsWindow from "./ProjectsContent";
+import TerminalWindow from "./TerminalContent";
+import SkillsWindow from "./SAEContent";
 const DESKTOP_ICONS = [
   {
     id: "projects",
@@ -35,7 +40,7 @@ const DESKTOP_ICONS = [
   },
   {
     id: "contact",
-    title: "Contact",
+    title: "Let's Connect",
     icon: "./contact.png",
     type: "window",
     subtitle: "Double Click to get in touch",
@@ -56,6 +61,14 @@ const DESKTOP_ICONS = [
     url: "https://www.google.com",
   },
 ];
+ const WINDOW_REGISTRY = {
+  terminal: TerminalWindow,
+  about: AboutWindow,
+  projects: ProjectsWindow,
+  skills: SkillsWindow,
+  contact: ContactWindow,
+};
+
 const SNAP_THRESHOLD = 20;
 
 const Desktop = ({onLogout}) => {
@@ -144,7 +157,7 @@ const Desktop = ({onLogout}) => {
           .filter((w) => !w.isMinimized)
           .map((win) => {
             const isActive = activeWindowId === win.id;
-
+  const WindowComponent = WINDOW_REGISTRY[win.id];
             return (
               <Rnd
                 key={win.id}
@@ -300,8 +313,8 @@ const Desktop = ({onLogout}) => {
                 </div>
 
                 {/* ================= CONTENT ================= */}
-                <div className="h-[calc(100%-36px)] bg-zinc-950 p-4 text-gray-400 text-sm">
-                  {win.title} window
+                <div className="h-[calc(100%-36px)] bg-zinc-950  text-gray-400 text-sm">
+                  <WindowComponent desktopSize={desktopSize} />
                 </div>
               </Rnd>
             );
@@ -323,6 +336,7 @@ const Desktop = ({onLogout}) => {
         )}
       </div>
       <Taskbar />
+      
     </>
   );
 };

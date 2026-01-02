@@ -225,7 +225,7 @@ h-min
     focus:outline-none
   "
 >
-  Log out ➜&#93;
+  Log out &#91;-&gt;
 </button>
 
         </div>
