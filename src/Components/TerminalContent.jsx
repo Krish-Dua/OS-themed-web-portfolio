@@ -83,11 +83,21 @@ export default function TerminalContent({ desktopSize}) {
       ]);
     }
 
-    // Window hooks (later tweakable)
-    if (command === "whoami") openWindow?.("about", "About Me",desktopSize);
-    if (command === "projects") openWindow?.("projects", "Projects",desktopSize);
-    if (command === "skills") openWindow?.("skills", "Skills",desktopSize);
-    if (command === "contact") openWindow?.("contact", "Let's Connect",desktopSize);
+    
+    if (command === "whoami") {setTimeout(()=>{
+openWindow?.("about", "About Me",desktopSize);
+    },700) }
+    if (command === "projects") {setTimeout(()=>{
+      {setTimeout(()=>{
+        openWindow?.("projects", "Projects",desktopSize);
+    },700) }
+    },700) }
+    if (command === "skills") {setTimeout(()=>{
+      openWindow?.("skills", "Skills",desktopSize);
+    },700) }
+    if (command === "contact") {setTimeout(()=>{
+openWindow?.("contact", "Let's Connect",desktopSize);
+    },700) }
 
   };
 
