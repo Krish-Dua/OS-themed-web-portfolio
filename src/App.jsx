@@ -5,7 +5,7 @@ import LoginScreen from './Components/LoginScreen'
 import Desktop from './Components/Desktop'
 
 function App() {
-  const [phase, setPhase] = useState("desktop")
+  const [phase, setPhase] = useState("boot")
 
   if (phase === "boot") {
     return <BootScreen onFinish={() => setPhase("login")} />
