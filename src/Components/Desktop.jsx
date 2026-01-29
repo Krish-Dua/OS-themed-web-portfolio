@@ -1,5 +1,5 @@
 import React from "react";
-import Taskbar from "./taskbar";
+import Taskbar from "./Taskbar";
 import useWindowStore from "../Store";
 import { Rnd } from "react-rnd";
 import StartMenu from "./StartMenu";
