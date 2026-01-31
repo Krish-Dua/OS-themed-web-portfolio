@@ -1,11 +1,10 @@
-import React from 'react'
-
+import React from "react";
 const ContactContent = () => {
   return (
     <div
       className="
         h-full w-full overflow-y-auto
-        bg-gradient-to-br from-slate-100 via-sky-100 to-blue-200
+        bg-linear-to-br from-slate-100 via-sky-100 to-blue-200
         p-6
       "
       onClick={(e) => e.stopPropagation()}
@@ -20,26 +19,24 @@ const ContactContent = () => {
           text-slate-700
         "
       >
-        {/* HEADER */}
+        {}
         <div
           className="
             px-8 py-6
-            bg-gradient-to-r from-slate-800 to-slate-700
+            bg-linear-to-r from-slate-800 to-slate-700
             text-white
           "
         >
-          <h1 className="text-2xl font-semibold">
-            Let's Connect
-          </h1>
+          <h1 className="text-2xl font-semibold">Let's Connect</h1>
           <p className="text-sm text-white/80 mt-1">
-            Open to opportunities, collaborations, and discussions related to software development.
+            Open to opportunities, collaborations, and discussions related to
+            software development.
           </p>
         </div>
 
-        {/* CONTENT */}
+        {}
         <div className="p-8 space-y-6">
-
-          {/* EMAIL */}
+          {}
           <div
             className="
               group
@@ -50,9 +47,7 @@ const ContactContent = () => {
               transition
             "
           >
-            <h2 className="text-lg font-medium text-slate-900">
-              Email
-            </h2>
+            <h2 className="text-lg font-medium text-slate-900">Email</h2>
             <a
               href="https://mail.google.com/mail/?view=cm&to=krishdua747@gmail.com&su=Portfolio%20Contact"
               target="_blank"
@@ -71,7 +66,7 @@ const ContactContent = () => {
             </p>
           </div>
 
-          {/* LINKEDIN */}
+          {}
           <div
             className="
               group
@@ -82,9 +77,7 @@ const ContactContent = () => {
               transition
             "
           >
-            <h2 className="text-lg font-medium text-slate-900">
-              LinkedIn
-            </h2>
+            <h2 className="text-lg font-medium text-slate-900">LinkedIn</h2>
             <a
               href="https://www.linkedin.com/in/krish-dua-6a8a05347"
               target="_blank"
@@ -100,16 +93,13 @@ const ContactContent = () => {
             </a>
           </div>
 
-         
-
-          {/* FOOTER */}
+          {}
           <div className="pt-4 text-sm text-slate-500">
             Feel free to reach out using any of the options above.
           </div>
         </div>
       </div>
     </div>
-  )
-}
-
-export default ContactContent
+  );
+};
+export default ContactContent;
