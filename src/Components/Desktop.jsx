@@ -55,7 +55,7 @@ const DESKTOP_ICONS = [
   {
     id: "standardP",
     title: "Standard Portfolio",
-    subtitle: "Click here for a simple portfolio",
+    subtitle: "Double Click here for a simple portfolio",
     icon: "./standardP.png",
     type: "external",
     url: "https://www.google.com",
@@ -119,7 +119,7 @@ const Desktop = ({onLogout}) => {
       <div
         ref={desktopRef}
           onMouseDown={() => closeStart()}
-        className='w-screen relative overflow-hidden h-[93dvh] bg-[url("/Desktop-bg.jpg")] bg-cover bg-center'
+        className='w-screen relative overflow-hidden h-[93dvh] bg-[url("/src/assets/Desktop-bg.jpg")] bg-cover bg-center'
       >
         <div className="h-[90%] select-none w-min flex flex-wrap gap-6 flex-col">
           {DESKTOP_ICONS.map((icon) => (

@@ -6,7 +6,7 @@ const LoginScreen = ({ onLogin }) => {
 
     if(weLoading){
         return(
-      <div className='w-screen h-dvh bg-[url("/login-bg.jpg")] bg-cover'>
+      <div className='w-screen h-dvh bg-[url("/src/assets/login-bg.jpg")] bg-cover'>
         <div className="w-full h-[80%] flex flex-col justify-center gap-10 items-center">
             <div className="flex gap-4 justify-center items-center">
                 <div className="
@@ -25,9 +25,9 @@ const LoginScreen = ({ onLogin }) => {
   return (
 
 
-    <div className='w-screen h-dvh bg-[url("./login-bg.jpg")] bg-cover'>
+    <div className='w-screen h-dvh bg-[url("/src/assets/login-bg.jpg")] bg-cover'>
       <div className="w-full h-full flex flex-col justify-center gap-10 items-center">
-        <img src="./login-bg.jpg" className="h-50 w-50 object-cover shadow-2xl border-3 border-blue-500 " alt="" />
+        <img src="/src/assets/login-bg.jpg" className="h-50 w-50 object-cover shadow-2xl border-3 border-blue-500 " alt="" />
         <div>
           <p className="text-gray-100 font-bold text-3xl">Krish Dua</p>
           <p className="text-gray-200 font-bold text-2xl">Full-Stack Web Developer</p>
