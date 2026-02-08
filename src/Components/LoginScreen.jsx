@@ -1,12 +1,14 @@
 import React from "react";
-
+import loginBg from "../assets/login-bg.jpg";
 const LoginScreen = ({ onLogin }) => {
     const [weLoading, setWeLoading] = React.useState(false);
 
 
     if(weLoading){
         return(
-      <div className='w-screen h-dvh bg-[url("/src/assets/login-bg.jpg")] bg-cover'>
+      <div 
+      style={{ backgroundImage: `url(${loginBg})` }}
+      className='w-screen h-dvh bg-cover'>
         <div className="w-full h-[80%] flex flex-col justify-center gap-10 items-center">
             <div className="flex gap-4 justify-center items-center">
                 <div className="
@@ -25,9 +27,11 @@ const LoginScreen = ({ onLogin }) => {
   return (
 
 
-    <div className='w-screen h-dvh bg-[url("/src/assets/login-bg.jpg")] bg-cover'>
+    <div 
+      style={{ backgroundImage: `url(${loginBg})` }}
+     className='w-screen h-dvh  bg-cover'>
       <div className="w-full h-full flex flex-col justify-center gap-10 items-center">
-        <img src="/src/assets/login-bg.jpg" className="h-50 w-50 object-cover shadow-2xl border-3 border-blue-500 " alt="" />
+        <img src={loginBg} className="h-50 w-50 object-cover shadow-2xl border-3 border-blue-500 " alt="" />
         <div>
           <p className="text-gray-100 font-bold text-3xl">Krish Dua</p>
           <p className="text-gray-200 font-bold text-2xl">Full-Stack Web Developer</p>
