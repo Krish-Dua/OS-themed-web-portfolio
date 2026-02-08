@@ -119,7 +119,7 @@ const Desktop = ({onLogout}) => {
       <div
         ref={desktopRef}
           onMouseDown={() => closeStart()}
-        className='w-screen relative overflow-hidden h-[93dvh] bg-[url("./Desktop-bg.jpg")] bg-cover bg-center'
+        className='w-screen relative overflow-hidden h-[93dvh] bg-[url("/Desktop-bg.jpg")] bg-cover bg-center'
       >
         <div className="h-[90%] select-none w-min flex flex-wrap gap-6 flex-col">
           {DESKTOP_ICONS.map((icon) => (

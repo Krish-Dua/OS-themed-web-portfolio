@@ -6,7 +6,7 @@ const LoginScreen = ({ onLogin }) => {
 
     if(weLoading){
         return(
-      <div className='w-screen h-dvh bg-[url("./login-bg.jpg")] bg-cover'>
+      <div className='w-screen h-dvh bg-[url("/login-bg.jpg")] bg-cover'>
         <div className="w-full h-[80%] flex flex-col justify-center gap-10 items-center">
             <div className="flex gap-4 justify-center items-center">
                 <div className="
