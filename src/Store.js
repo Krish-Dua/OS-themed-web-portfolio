@@ -118,14 +118,12 @@ const offset = state.windows.length * 40;
   },
 
   updatePosition: (id, position) => {
-    console.log(position);
     set((state) => ({
       windows: state.windows.map((w) => (w.id === id ? { ...w, position } : w)),
     }));
   },
 
   updateSize: (id, size) => {
-    console.log(size)
     set((state) => ({
       windows: state.windows.map((w) => (w.id === id ? { ...w, size } : w)),
     }));
