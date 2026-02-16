@@ -9,25 +9,32 @@ import ProjectsWindow from "./ProjectsContent";
 import TerminalWindow from "./TerminalContent";
 import SkillsWindow from "./SAEContent";
 import desktopBg from "../assets/Desktop-bg.jpg";
+import projectIconImg from "../assets/projects.png";
+import aboutIconImg from "../assets/about.png";
+import skillsIconImg from "../assets/skills.png";
+import resumeIconImg from "../assets/resume.png";
+import contactIconImg from "../assets/contact.png";
+import terminalIconImg from "../assets/terminal.png";
+import standardPIconImg from "../assets/standardP.png";
 const DESKTOP_ICONS = [
   {
     id: "projects",
     title: "Projects",
     subtitle: "Double Click to view my projects",
-    icon: "./projects.png",
+    icon: projectIconImg,
     type: "window",
   },
   {
     id: "about",
     title: "About Me",
-    icon: "./about.png",
+    icon: aboutIconImg,
     type: "window",
     subtitle: "Double Click to Know more about me",
   },
   {
     id: "skills",
     title: "Skills & Education",
-    icon: "./skills.png",
+    icon: skillsIconImg,
     type: "window",
     subtitle: "Double Click to see my Skills & Education",
   },
@@ -35,21 +42,21 @@ const DESKTOP_ICONS = [
     id: "resume",
     title: "Resume",
     subtitle: "Double Click to view My Resume (PDF Format)",
-    icon: "./resume.png",
+    icon: resumeIconImg,
     type: "pdf",
     url: "./Krish_Dua_Resume.pdf",
   },
   {
     id: "contact",
     title: "Let's Connect",
-    icon: "./contact.png",
+    icon: contactIconImg,
     type: "window",
     subtitle: "Double Click to get in touch",
   },
   {
     id: "terminal",
     title: "Terminal",
-    icon: "./terminal.png",
+    icon: terminalIconImg,
     type: "window",
     subtitle: "Double Click to Open Terminal",
   },
@@ -57,7 +64,7 @@ const DESKTOP_ICONS = [
     id: "standardP",
     title: "Standard Portfolio",
     subtitle: "Double Click here for a simple portfolio",
-    icon: "./standardP.png",
+    icon: standardPIconImg,
     type: "external",
     url: "https://www.google.com",
   },
@@ -142,7 +149,7 @@ const Desktop = ({onLogout}) => {
             "
             >
               <img
-                src={icon.icon ? icon.icon : "./win-strt-btn.png"}
+                src={icon.icon}
                 alt={icon.title}
                 className="w-auto h-18 rounded-md object-cover"
                 draggable={false}
@@ -156,7 +163,6 @@ const Desktop = ({onLogout}) => {
         </div>
 
         {windows
-          .filter((w) => !w.isMinimized)
           .map((win) => {
             const isActive = activeWindowId === win.id;
   const WindowComponent = WINDOW_REGISTRY[win.id];
@@ -178,8 +184,8 @@ const Desktop = ({onLogout}) => {
                   x: win.isMaximized ? 0 : win.position.x,
                   y: win.isMaximized ? 0 : win.position.y,
                 }}
-                disableDragging={win.isMaximized}
-                enableResizing={!win.isMaximized}
+                disableDragging={win.isMaximized || win.isMinimized}
+                enableResizing={!win.isMaximized && !win.isMinimized}
                 onDragStart={(e, d) => {
                   lastDragY.current = d.y;
                   draggingWindowId.current = win.id;
@@ -246,15 +252,18 @@ const Desktop = ({onLogout}) => {
                   });
                   updatePosition(win.id, position);
                 }}
-                className="
+                className={`
     absolute
     shadow-2xl
     overflow-hidden
     bg-zinc-900
     border
-  "
+    `}
+  
                 style={{
                   zIndex: win.zIndex,
+                  visibility: win.isMinimized ? "hidden" : "visible",
+                  pointerEvents: win.isMinimized ? "none" : "auto",
                 }}
               >
                 {/* ================= TITLE BAR ================= */}

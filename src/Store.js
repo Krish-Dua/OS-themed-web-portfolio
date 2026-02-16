@@ -98,12 +98,19 @@ const offset = state.windows.length * 40;
   },
 
   restoreWindow: (id) => {
-    set((state) => ({
-      windows: state.windows.map((w) =>
-        w.id === id ? { ...w, isMinimized: false, zIndex: ++zCounter } : w
-      ),
-      activeWindowId: id,
-    }));
+    set((state) => {
+      const window = state.windows.find((w) => w.id === id);
+      const isMinimized = window?.isMinimized;
+
+      return {
+        windows: state.windows.map((w) =>
+          w.id === id 
+            ? { ...w, isMinimized: !isMinimized, zIndex: ++zCounter } 
+            : w
+        ),
+        activeWindowId: isMinimized ? id : null,
+      };
+    });
   },
 
   toggleMaximize: (id) => {

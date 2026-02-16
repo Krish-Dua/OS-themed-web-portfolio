@@ -1,6 +1,23 @@
 import React from 'react'
 import Clock from './Clock'
 import useWindowStore from '../Store'
+import projectIconImg from '../assets/projects.png'
+import aboutIconImg from '../assets/about.png'
+import skillsIconImg from '../assets/skills.png'
+import resumeIconImg from '../assets/resume.png'
+import contactIconImg from '../assets/contact.png'
+import terminalIconImg from '../assets/terminal.png'
+import standardPIconImg from '../assets/standardP.png'
+
+const WINDOW_ICON_MAP = {
+  projects: projectIconImg,
+  about: aboutIconImg,
+  skills: skillsIconImg,
+  resume: resumeIconImg,
+  contact: contactIconImg,
+  terminal: terminalIconImg,
+  standardP: standardPIconImg,
+};
 
 
 
@@ -20,7 +37,7 @@ const toggleStart = useWindowStore((s) => s.toggleStart);
   return(
     <img onClick={()=>{
       restoreWindow(win.id)
-    }} src={`./${win.id}.png`} className={`h-[90%] w-auto  object-contain hover:scale-105 ${activeWindowId===win.id?"border-b-4 border-blue-300":" border-b-4 border-gray-400"} `} alt="" />
+    }} src={WINDOW_ICON_MAP[win.id]} className={`h-[90%] w-auto  object-contain hover:scale-105 ${activeWindowId===win.id?"border-b-4 border-blue-300":" border-b-4 border-gray-400"} `} alt="" />
   )
 })}
 </div>

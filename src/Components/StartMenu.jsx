@@ -1,32 +1,40 @@
 import React from "react";
 import useWindowStore from "../Store";
+import projectIconImg from "../assets/projects.png";
+import aboutIconImg from "../assets/about.png";
+import skillsIconImg from "../assets/skills.png";
+import resumeIconImg from "../assets/resume.png";
+import contactIconImg from "../assets/contact.png";
+import terminalIconImg from "../assets/terminal.png";
+import standardPIconImg from "../assets/standardP.png";
+
 const DESKTOP_ICONS = [
   {
     id: "projects",
     title: "Projects",
     subtitle: "Things I’ve built",
-    icon: "./projects.png",
+    icon: projectIconImg,
     type: "window",
   },
   {
     id: "about",
     title: "About Me",
     subtitle: "A little about me",
-    icon: "./about.png",
+    icon: aboutIconImg,
     type: "window",
   },
   {
     id: "skills",
     title: "Skills & Education",
     subtitle: "My Skills and Education",
-    icon: "./skills.png",
+    icon: skillsIconImg,
     type: "window",
   },
   {
     id: "resume",
     title: "Resume",
     subtitle: "View or download my resume (PDF)",
-    icon: "./resume.png",
+    icon: resumeIconImg,
     type: "pdf",
     url: "./Krish_Dua_Resume.pdf",
   },
@@ -34,21 +42,21 @@ const DESKTOP_ICONS = [
     id: "contact",
     title: "Contact",
     subtitle: "Let’s connect",
-    icon: "./contact.png",
+    icon: contactIconImg,
     type: "window",
   },
   {
     id: "terminal",
     title: "Terminal",
     subtitle: "Interactive terminal",
-    icon: "./terminal.png",
+    icon: terminalIconImg,
     type: "window",
   },
   {
     id: "standardP",
     title: "Standard Portfolio",
     subtitle: "A simple and Classic portfolio",
-    icon: "./standardP.png",
+    icon: standardPIconImg,
     type: "external",
     url: "https://www.google.com",
   },
