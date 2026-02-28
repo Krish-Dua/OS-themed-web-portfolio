@@ -118,7 +118,7 @@ const StartMenu = ({ desktopSize,logout }) => {
     <div
       className="
         absolute bottom-0 left-0
-        w-[40%] h-min
+       w-full sm:w-[40%] h-min
         border border-zinc-700
         rounded-sm
         shadow-2xl
@@ -133,18 +133,22 @@ const StartMenu = ({ desktopSize,logout }) => {
       <header
         className="
 h-min
-    flex items-center gap-6
+    flex items-center justify-between gap-6
     p-3
     
     bg-[#215372]
     opacity-95
     border-b border-[#c9c9c9]
   "
-      >
+      ><div className="flex items-center gap-4">
         <div className="w-9 h-9 rounded-full bg-gray-400" />
         <span className="font-semibold text-lg text-white">
           Krish Dua • Full Stack Developer
         </span>
+        </div>
+       {!document.fullscreenElement &&<p onClick={()=>{
+          document.documentElement.requestFullscreen()
+        }} title="Enter fullscreen mode" className="text-white text-2xl">⛶</p>}
       </header>
       <main className="flex w-full h-full">
         {/* ================= LEFT : APPS ================= */}
@@ -197,16 +201,16 @@ h-min
                 rel="noopener noreferrer"
                 className="
               flex items-center gap-3
-              p-2 rounded-md
+              px-0 sm:px-2 py-2 rounded-md
               hover:bg-white/10
-              text-white text-md
+              text-white text-sm md:text-md
               transition
             "
               >
                 <img
                   src={link.icon}
                   alt={link.title}
-                  className="w-7 h-7 rounded-sm object-contain"
+                  className="w-5 sm:w-7 h-5 sm:h-7 rounded-sm object-contain"
                 />
                 {link.title}
               </a>
