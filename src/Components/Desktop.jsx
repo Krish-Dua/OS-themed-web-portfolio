@@ -104,7 +104,7 @@ const Desktop = ({onLogout}) => {
   
 
   const minWindowSize = {
-    width: Math.floor(desktopSize.width * 0.6),
+    width: Math.floor(desktopSize.width * 0.5),
     height: Math.floor(desktopSize.height * 0.7),
   };
 
@@ -280,7 +280,7 @@ const Desktop = ({onLogout}) => {
                 >
                   {/* LEFT */}
                   <div className="flex items-center gap-2 no-drag cursor-default">
-                    <div className="w-4 h-4 bg-white/20 rounded-sm" />
+                    <div className="w-4 h-4 bg-blue-500 rounded-sm" />
                     <span className="text-sm text-white font-medium">
                       {win.title}
                     </span>

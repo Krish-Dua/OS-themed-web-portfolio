@@ -7,6 +7,7 @@ import resumeIconImg from "../assets/resume.png";
 import contactIconImg from "../assets/contact.png";
 import terminalIconImg from "../assets/terminal.png";
 import standardPIconImg from "../assets/standardP.png";
+import heroImage from "../assets/hero.png";
 
 const DESKTOP_ICONS = [
   {
@@ -141,7 +142,7 @@ h-min
     border-b border-[#c9c9c9]
   "
       ><div className="flex items-center gap-4">
-        <div className="w-9 h-9 rounded-full bg-gray-400" />
+        <img src={heroImage} className="w-9 h-9 rounded-full object-cover bg-gray-400" />
         <span className="font-semibold text-lg text-white">
           Krish Dua • Full Stack Developer
         </span>
