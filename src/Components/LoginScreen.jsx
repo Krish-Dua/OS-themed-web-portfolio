@@ -1,5 +1,6 @@
 import React from "react";
 import loginBg from "../assets/login-bg.jpg";
+import heroImage from "../assets/hero.png";
 const LoginScreen = ({ onLogin }) => {
     const [weLoading, setWeLoading] = React.useState(false);
 
@@ -31,7 +32,7 @@ const LoginScreen = ({ onLogin }) => {
       style={{ backgroundImage: `url(${loginBg})` }}
      className='w-screen h-dvh  bg-cover'>
       <div className="w-full h-full flex flex-col justify-center gap-10 items-center">
-        <img src={loginBg} className="h-50 w-50 object-cover shadow-2xl border-3 border-blue-500 " alt="" />
+        <img src={heroImage} className="h-70 w-70 object-cover shadow-black shadow-3xl rounded-md" alt="" />
         <div>
           <p className="text-gray-100 font-bold text-3xl">Krish Dua</p>
           <p className="text-gray-200 font-bold text-2xl">Full-Stack Web Developer</p>
