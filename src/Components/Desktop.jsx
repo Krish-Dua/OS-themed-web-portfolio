@@ -66,7 +66,7 @@ const DESKTOP_ICONS = [
     subtitle: "Double Click here for a simple portfolio",
     icon: standardPIconImg,
     type: "external",
-    url: "https://www.google.com",
+    url: "https://krish-dua.onrender.com",
   },
 ];
  const WINDOW_REGISTRY = {
