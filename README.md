@@ -1,4 +1,15 @@
-# OS Themed Web Portfolio
+<h1 align="center">OS Themed Web Portfolio</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-149ECA?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
+  <img src="https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 7" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4" />
+  <img src="https://img.shields.io/badge/Zustand-State-433E38?style=for-the-badge&logo=zustand&logoColor=white" alt="Zustand" />
+</p>
+
+<p align="center">
+  A desktop-style, operating-system-inspired interactive portfolio built with modern React tooling.
+</p>
 
 ## Overview
 This project is an interactive **operating system themed portfolio** built with React and Vite.
@@ -10,6 +21,8 @@ Instead of a standard single-page layout, it simulates a desktop experience with
 - Terminal-inspired portfolio navigation
 
 The portfolio highlights profile information, skills, projects, resume, and contact options in an immersive UI.
+
+---
 
 ## Features
 - Boot animation and login screen before entering the desktop
@@ -27,13 +40,19 @@ The portfolio highlights profile information, skills, projects, resume, and cont
 - Contact section with quick mail/linkedin actions
 - Responsive behavior for desktop and smaller screens
 
+---
+
 ## Tech Stack
-- **Frontend:** React 19, Vite 7
-- **Styling:** Tailwind CSS 4
-- **State Management:** Zustand
-- **Window/Drag System:** `react-rnd`
-- **Utilities:** Day.js
-- **Linting:** ESLint
+| Layer | Tools |
+|---|---|
+| Frontend | React 19, Vite 7 |
+| Styling | Tailwind CSS 4 |
+| State Management | Zustand |
+| Window/Drag System | `react-rnd` |
+| Utilities | Day.js |
+| Linting | ESLint |
+
+---
 
 ## Setup
 ### 1. Clone the repository
@@ -62,9 +81,13 @@ npm run build
 npm run preview
 ```
 
+---
+
 ## Live Link
 - Main portfolio: **Add your deployed URL here**
 - Standard portfolio link currently referenced in app: https://krish-dua.onrender.com
+
+---
 
 ## Project Sections
 - **About Me**: Background, development approach, goals, and hobbies
@@ -72,6 +95,8 @@ npm run preview
 - **Projects**: Featured projects with live demos and source links
 - **Contact**: Email and LinkedIn outreach
 - **Terminal**: Command-based navigation to major sections
+
+---
 
 ## Project Structure
 ```text
@@ -91,11 +116,7 @@ src/
   App.jsx
 ```
 
-## Scripts
-- `npm run dev` - start development server
-- `npm run build` - create production build
-- `npm run preview` - preview production build
-- `npm run lint` - run ESLint
+---
 
 ## Notes
 - The portfolio is designed for an OS-like interaction style, so fullscreen gives the best user experience.
