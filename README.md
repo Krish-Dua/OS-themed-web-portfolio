@@ -1,16 +1,102 @@
-# React + Vite
+# OS Themed Web Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This project is an interactive **operating system themed portfolio** built with React and Vite.
+Instead of a standard single-page layout, it simulates a desktop experience with:
+- Boot screen and login flow
+- Desktop icons
+- Draggable/resizable windows
+- Taskbar and start menu
+- Terminal-inspired portfolio navigation
 
-Currently, two official plugins are available:
+The portfolio highlights profile information, skills, projects, resume, and contact options in an immersive UI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Boot animation and login screen before entering the desktop
+- Fullscreen suggestion prompt for better desktop immersion
+- Desktop icons with double-click behavior
+- Window manager powered by Zustand:
+  - Open/focus/close windows
+  - Minimize/restore from taskbar
+  - Maximize and snap (left/right/full)
+  - Layered z-index window focus handling
+- Start menu with quick access to portfolio sections and social links
+- Terminal window with commands:
+  - `help`, `clear`, `whoami`, `projects`, `skills`, `contact`
+- Resume PDF launcher
+- Contact section with quick mail/linkedin actions
+- Responsive behavior for desktop and smaller screens
 
-## React Compiler
+## Tech Stack
+- **Frontend:** React 19, Vite 7
+- **Styling:** Tailwind CSS 4
+- **State Management:** Zustand
+- **Window/Drag System:** `react-rnd`
+- **Utilities:** Day.js
+- **Linting:** ESLint
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Setup
+### 1. Clone the repository
+```bash
+git clone <your-repo-url>
+cd web-portfolio
+```
 
-## Expanding the ESLint configuration
+### 2. Install dependencies
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. Run in development
+```bash
+npm run dev
+```
+
+### 4. Build for production
+```bash
+npm run build
+```
+
+### 5. Preview production build
+```bash
+npm run preview
+```
+
+## Live Link
+- Main portfolio: **Add your deployed URL here**
+- Standard portfolio link currently referenced in app: https://krish-dua.onrender.com
+
+## Project Sections
+- **About Me**: Background, development approach, goals, and hobbies
+- **Skills & Education**: Technical stack and academic timeline
+- **Projects**: Featured projects with live demos and source links
+- **Contact**: Email and LinkedIn outreach
+- **Terminal**: Command-based navigation to major sections
+
+## Project Structure
+```text
+src/
+  Components/
+    BootScreen.jsx
+    LoginScreen.jsx
+    Desktop.jsx
+    Taskbar.jsx
+    StartMenu.jsx
+    AboutMeContent.jsx
+    SAEContent.jsx
+    ProjectsContent.jsx
+    ContactContent.jsx
+    TerminalContent.jsx
+  Store.js
+  App.jsx
+```
+
+## Scripts
+- `npm run dev` - start development server
+- `npm run build` - create production build
+- `npm run preview` - preview production build
+- `npm run lint` - run ESLint
+
+## Notes
+- The portfolio is designed for an OS-like interaction style, so fullscreen gives the best user experience.
+- Static assets like the boot video, start button image, and resume PDF are served from the `public/` directory.
