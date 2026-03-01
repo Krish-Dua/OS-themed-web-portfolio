@@ -84,7 +84,7 @@ npm run preview
 ---
 
 ## Live Link
-- Main portfolio: hhtps://krish-os-portfolio.onrender.com
+- Main portfolio: https://krish-os-portfolio.onrender.com
 - Standard portfolio link currently referenced in app: https://krish-dua.onrender.com
 
 ---
