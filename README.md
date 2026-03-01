@@ -1,4 +1,4 @@
-<h1 align="center">OS Themed Web Portfolio</h1>
+﻿<h1 align="center">🖥️ OS Themed Web Portfolio</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-19-149ECA?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
@@ -11,7 +11,7 @@
   A desktop-style, operating-system-inspired interactive portfolio built with modern React tooling.
 </p>
 
-## Overview
+## 📖 Overview
 This project is an interactive **operating system themed portfolio** built with React and Vite.
 Instead of a standard single-page layout, it simulates a desktop experience with:
 - Boot screen and login flow
@@ -24,25 +24,25 @@ The portfolio highlights profile information, skills, projects, resume, and cont
 
 ---
 
-## Features
-- Boot animation and login screen before entering the desktop
-- Fullscreen suggestion prompt for better desktop immersion
-- Desktop icons with double-click behavior
+## ✨ Features
+- 🚀 Boot animation and login screen before entering the desktop
+- 🧭 Fullscreen suggestion prompt for better desktop immersion
+- 🖱️ Desktop icons with double-click behavior
 - Window manager powered by Zustand:
-  - Open/focus/close windows
-  - Minimize/restore from taskbar
-  - Maximize and snap (left/right/full)
-  - Layered z-index window focus handling
-- Start menu with quick access to portfolio sections and social links
-- Terminal window with commands:
+  - 🪟 Open/focus/close windows
+  - 📌 Minimize/restore from taskbar
+  - 📐 Maximize and snap (left/right/full)
+  - 🧱 Layered z-index window focus handling
+- 🧰 Start menu with quick access to portfolio sections and social links
+- 💻 Terminal window with commands:
   - `help`, `clear`, `whoami`, `projects`, `skills`, `contact`
-- Resume PDF launcher
-- Contact section with quick mail/linkedin actions
-- Responsive behavior for desktop and smaller screens
+- 📄 Resume PDF launcher
+- 📬 Contact section with quick mail/linkedin actions
+- 📱 Responsive behavior for desktop and smaller screens
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 | Layer | Tools |
 |---|---|
 | Frontend | React 19, Vite 7 |
@@ -54,7 +54,7 @@ The portfolio highlights profile information, skills, projects, resume, and cont
 
 ---
 
-## Setup
+## ⚙️ Setup
 ### 1. Clone the repository
 ```bash
 git clone <your-repo-url>
@@ -83,22 +83,22 @@ npm run preview
 
 ---
 
-## Live Link
+## 🌐 Live Link
 - Main portfolio: https://krish-os-portfolio.onrender.com
 - Standard portfolio link currently referenced in app: https://krish-dua.onrender.com
 
 ---
 
-## Project Sections
-- **About Me**: Background, development approach, goals, and hobbies
-- **Skills & Education**: Technical stack and academic timeline
-- **Projects**: Featured projects with live demos and source links
-- **Contact**: Email and LinkedIn outreach
-- **Terminal**: Command-based navigation to major sections
+## 📂 Project Sections
+- **About Me**: 👤 Background, development approach, goals, and hobbies
+- **Skills & Education**: 🎓 Technical stack and academic timeline
+- **Projects**: 🧪 Featured projects with live demos and source links
+- **Contact**: 🤝 Email and LinkedIn outreach
+- **Terminal**: ⌨️ Command-based navigation to major sections
 
 ---
 
-## Project Structure
+## 🧱 Project Structure
 ```text
 src/
   Components/
@@ -118,6 +118,6 @@ src/
 
 ---
 
-## Notes
+## 📝 Notes
 - The portfolio is designed for an OS-like interaction style, so fullscreen gives the best user experience.
 - Static assets like the boot video, start button image, and resume PDF are served from the `public/` directory.
